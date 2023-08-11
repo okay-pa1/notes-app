@@ -30,7 +30,9 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                   notesRoute,
                   (route) => false);
             },
-            child: const Text('Go to home')),
+            child: const Text('Go to home')
+            ),
+          const Text('(Log out and log in once again after email verification)'),
         ],
       ),
     );
