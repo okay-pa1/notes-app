@@ -31,6 +31,8 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    
     return FutureBuilder(
         future: AuthService.firebase().initialize(),
         builder: (context, snapshot) {
@@ -48,9 +50,51 @@ class Homepage extends StatelessWidget {
               return const LoginView();
             
             default:
-              return const CircularProgressIndicator();
+              return const Loadingscreen();
           }
         },
       );
+  }
+}
+
+class Loadingscreen extends StatefulWidget {
+  const Loadingscreen({super.key});
+
+  @override
+  State<Loadingscreen> createState() => _LoadingscreenState();
+}
+
+class _LoadingscreenState extends State<Loadingscreen> with TickerProviderStateMixin {
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      /// [AnimationController]s can be created with `vsync: this` because of
+      /// [TickerProviderStateMixin].
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..addListener(() {
+        setState(() {});
+      });
+    controller.repeat(reverse: true);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body:Center(
+        child: CircularProgressIndicator(
+                value: controller.value,
+              ),
+      ),
+    );
   }
 }
