@@ -12,6 +12,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -121,3 +122,4 @@ Future<bool> showlogoutdialog(BuildContext context){
     );
   }).then((value) => value ?? false);
 }
+
